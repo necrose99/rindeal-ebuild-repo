@@ -16,7 +16,7 @@ EANT_GENTOO_CLASSPATH="
 inherit eutils java-pkg-2 java-ant-2
 
 DESCRIPTION="Java-based editor for the OpenStreetMap project"
-HOMEPAGE="http://josm.openstreetmap.de/"
+HOMEPAGE="https://josm.openstreetmap.de/"
 LICENSE="GPL-2"
 
 SLOT="0"
@@ -27,10 +27,10 @@ KEYWORDS="~amd64"
 
 DEPEND_A=(
 	">=virtual/jdk-1.8"
-	"dev-java/javacc"
-	"dev-java/commons-compress"
-	"dev-java/commons-logging"
-	"dev-java/error-prone-annotations"
+	"dev-java/javacc:0"
+	"dev-java/commons-compress:0"
+	"dev-java/commons-logging:0"
+	"dev-java/error-prone-annotations:0"
 )
 RDEPEND_A=(
 	">=virtual/jre-1.8"
@@ -69,10 +69,10 @@ src_prepare() {
 	sed -r -e '/name="javacc.home"/ s|(location=")\$\{base.dir}/tools(")|'"\1${EROOT}usr/share/javacc/lib/\2|" \
 		-i -- build.xml || die
 
-	sed -r -e '/name="error_prone_ant.jar"/ s|(location=")\$\{base.dir}/tools/error_prone_ant-2.0.19.jar(")|'"\1${EROOT}usr/share/error-prone-annotations/lib/error-prone-annotations.jar\2|" \
-		-i -- build.xml || die
-
-	java-ant_rewrite-classpath
+# 	sed -r -e '/name="error_prone_ant.jar"/ s|(location=")\$\{base.dir}/tools/error_prone_ant-2.0.19.jar(")|'"\1${EROOT}usr/share/error-prone-annotations/lib/error-prone-annotations.jar\2|" \
+# 		-i -- build.xml || die
+#
+# 	java-ant_rewrite-classpath
 }
 
 src_compile() {
